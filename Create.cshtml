@@ -1,0 +1,57 @@
+@model MedicineDonation
+
+<section class="donate">
+    <span class="badge-one">تبرع بدواء 💚</span>
+    <h1>ساهم فى <span>انقاذ حياه</span></h1>
+
+    @if (TempData["Success"] != null)
+    {
+        <div style="color:green; margin-bottom:15px">
+            @TempData["Success"]
+        </div>
+    }
+
+    <form asp-action="Create" method="post" class="form-card">
+        <h2>نموذج التبرع بالدواء</h2>
+
+        <!-- معلومات الدواء -->
+        <div class="box">
+            <h3>معلومات الدواء ✏️</h3>
+            <div class="grid">
+                <input asp-for="MedicineName" placeholder="اسم الدواء" />
+                <input asp-for="Quantity" type="number" placeholder="عدد العبوات" />
+
+                <select asp-for="Category">
+                    <option value="">اختر التصنيف</option>
+                    <option>مسكنات</option>
+                    <option>ادوية قلب</option>
+                    <option>مضادات حيوية</option>
+                    <option>ادوية ضغط</option>
+                    <option>ادوية سكر</option>
+                    <option>ادوية اطفال</option>
+                    <option>فيتامينات</option>
+                    <option>ادوية اخرى</option>
+                </select>
+
+                <input asp-for="ExpiryDate" type="date" />
+            </div>
+        </div>
+
+        <!-- معلومات المتبرع -->
+        <div class="box">
+            <h3>معلومات المتبرع 👤</h3>
+            <div class="grid">
+                <input asp-for="DonorName" placeholder="الاسم الكامل" />
+                <input asp-for="Phone" placeholder="رقم الهاتف" />
+                <input asp-for="Address" placeholder="العنوان" />
+                <input asp-for="AreaCode" placeholder="كود المنطقة" />
+            </div>
+        </div>
+
+        <textarea asp-for="Notes" placeholder="أي ملاحظات إضافية..."></textarea>
+
+        <button type="submit" class="donate-btn-one">
+            إرسال التبرع
+        </button>
+    </form>
+</section>
