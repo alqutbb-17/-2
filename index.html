@@ -28,19 +28,24 @@
     </div>
 
     <ul class="nav-links">
-        <li>الرئيسية</li>
-        <li>من نحن</li>
-        <li>تبرع الآن</li>
-        <li>المخزون</li>
-        <li>تواصل معنا</li>
-    </ul>
+    <li><a href="#home" data-link="home">الرئيسية</a></li>
+    <li><a href="#about" data-link="about">من نحن</a></li>
+    <li><a href="#inventory" data-link="inventory">المخزون</a></li>
+</ul>
 
-    <button class="donate-btn">❤ تبرع الآن</button>
+
+    <!-- login and register  .... -->
+    <div class="auth-links">
+        <span id="openLogin" class="auth-link">تسجيل دخول</span>
+        <span class="divider">|</span>
+        <span id="openRegister" class="auth-link">إنشاء حساب</span>
+    </div>
+
 </header>
     <!-- Header End -->
 
     <!-- Hero Start -->
-<section data-section="الرئيسية" class="hero">
+<section id="home" data-section="الرئيسية" class="hero">
     <div class="hero-left">
         <div class="circle">
             <div class="circle-inner">
@@ -77,8 +82,8 @@
     </p>
 
     <div class="actions">
-        <button class="outline">✏ اطلب دواء</button>
-        <button class="fill">❤ تبرع بدواء</button>
+        <button class="outline" onclick="openModal('requestModal')">✏ اطلب دواء</button>
+        <button class="fill" onclick="openModal('donateModal')">❤ تبرع بدواء</button>
     </div>
 
     <div class="notes">
@@ -128,7 +133,7 @@
 
 <!-- main two -->
 <!-- about start -->
-<section data-section="من نحن" class="about">
+<section id="about" data-section="من نحن" class="about">
 
     <div class="section-title">
     <span class="badge">❤ من نحن</span>
@@ -224,13 +229,14 @@
 
 <!-- main three -->
 <!-- donate start -->
-<section class="donate">
+<!-- <section id="donate-section" data-section="تبرع الآن" class="donate">
     <span class="badge-one">تبرع بدواء 💚</span>
-    <h1>ساهم فى <span>انقاذ حياه</span></h1>
-    <form asp-action="Create" method="post" class="form-card">
-        <h2>نموذج التبرع بالدواء</h2>
-        
-        <div class="box">
+    <h1>ساهم فى <span>انقاذ حياه</span></h1> -->
+    <!-- <form asp-action="Create" method="post" class="form-card">
+        <h2>نموذج التبرع بالدواء</h2> -->
+
+        <!-- معلومات الدواء -->
+        <!-- <div class="box">
             <h3>معلومات الدواء ✏️</h3>
             <div class="grid">
                 <input asp-for="MedicineName" placeholder="اسم الدواء" />
@@ -250,9 +256,10 @@
 
                 <input asp-for="ExpiryDate" type="date" />
             </div>
-        </div>
+        </div> -->
 
-        <div class="box">
+        <!-- معلومات المتبرع -->
+        <!-- <div class="box">
             <h3>معلومات المتبرع 👤</h3>
             <div class="grid">
                 <input asp-for="DonorName" placeholder="الاسم الكامل" />
@@ -266,9 +273,9 @@
 
         <button type="submit" class="donate-btn-one">
             إرسال التبرع
-        </button>
-    </form>
-</section>
+        </button> -->
+    <!-- </form>
+</section> -->
 
 <!-- donate end -->
 <!-- main three -->
@@ -276,7 +283,7 @@
 
 <!-- main four -->
 <!-- stats start -->
-<section data-section="المخزون" class="stats-section">
+<section id="inventory" data-section="المخزون" class="stats-section">
     <div class="badge">
         <i class="icon">📦</i>
         المخزون الدوائي
@@ -334,7 +341,7 @@
 
     <div class="search-box">
         <input type="text" placeholder="ابحث عن دواء..." />
-        <span>🔍</span>
+        <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
     </div>
 </section>
 <!-- stats end -->
@@ -356,11 +363,16 @@
         <span class="tag">أدوية الضغط</span>
 
     <ul>
-        <li><i class="fa-solid fa-box"></i> الكمية: 80 عبوة</li>
-        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2025-02-28</li>
+        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2027-02-28</li>
+        <button class="edit-btn">تعديل</button>
     </ul>
 
-    <button class="btn">طلب هذا الدواء</button>
+    <div class="card-actions">
+        <button class="btn order-btn">طلب</button>
+        <button class="btn details-btn">التفاصيل</button>
+        <button class="btn delete-btn">حذف</button>
+    </div>
+
     </div>
 
     <!-- CARD 2 -->
@@ -374,11 +386,16 @@
         <span class="tag">أدوية السكري</span>
 
     <ul>
-        <li><i class="fa-solid fa-box"></i> الكمية: 12 عبوة</li>
-        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2025-04-10</li>
+        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2027-04-10</li>
+        <button class="edit-btn">تعديل</button>
     </ul>
 
-    <button class="btn">طلب هذا الدواء</button>
+    <div class="card-actions">
+        <button class="btn order-btn">طلب هذا الدواء</button>
+        <button class="btn details-btn">التفاصيل</button>
+        <button class="btn delete-btn">حذف</button>
+    </div>
+
     </div>
 
     <!-- CARD 3 -->
@@ -392,11 +409,16 @@
         <span class="tag">مضادات حيوية</span>
 
     <ul>
-        <li><i class="fa-solid fa-box"></i> الكمية: 45 عبوة</li>
-        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2025-06-20</li>
+        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2027-06-20</li>
+        <button class="edit-btn">تعديل</button>
     </ul>
 
-    <button class="btn">طلب هذا الدواء</button>
+    <div class="card-actions">
+        <button class="btn order-btn">طلب</button>
+        <button class="btn details-btn">التفاصيل</button>
+        <button class="btn delete-btn">حذف</button>
+    </div>
+
     </div>
 
     <!-- CARD 4 -->
@@ -410,11 +432,16 @@
         <span class="tag">مسكنات</span>
 
     <ul>
-        <li><i class="fa-solid fa-box"></i> الكمية: 150 عبوة</li>
-        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2025-08-15</li>
+        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2027-08-15</li>
+        <button class="edit-btn">تعديل</button>
     </ul>
 
-    <button class="btn">طلب هذا الدواء</button>
+    <div class="card-actions">
+        <button class="btn order-btn">طلب</button>
+        <button class="btn details-btn">التفاصيل</button>
+        <button class="btn delete-btn">حذف</button>
+    </div>
+
     </div>
 
 
@@ -430,11 +457,16 @@
     <span class="tag">أدوية المعدة</span>
 
     <ul>
-        <li><i class="fa-solid fa-box"></i> الكمية: 60 عبوة</li>
-        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2025-07-20</li>
+        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2027-07-20</li>
+        <button class="edit-btn">تعديل</button>
     </ul>
 
-    <button class="btn">طلب هذا الدواء</button>
+    <div class="card-actions">
+        <button class="btn order-btn">طلب</button>
+        <button class="btn details-btn">التفاصيل</button>
+        <button class="btn delete-btn">حذف</button>
+    </div>
+
 </div>
 
 <!-- CARD 6 -->
@@ -448,11 +480,16 @@
     <span class="tag">أدوية الحساسية</span>
 
     <ul>
-        <li><i class="fa-solid fa-box"></i> الكمية: 8 عبوات</li>
-        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2025-03-15</li>
+        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2027-03-15</li>
+        <button class="edit-btn">تعديل</button>
     </ul>
 
-    <button class="btn">طلب هذا الدواء</button>
+    <div class="card-actions">
+        <button class="btn order-btn">طلب</button>
+        <button class="btn details-btn">التفاصيل</button>
+        <button class="btn delete-btn">حذف</button>
+    </div>
+
 </div>
 
 <!-- CARD 7 -->
@@ -466,11 +503,16 @@
     <span class="tag">أدوية القلب</span>
 
     <ul>
-        <li><i class="fa-solid fa-box"></i> الكمية: 95 عبوة</li>
-        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2025-09-30</li>
+        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2027-09-30</li>
+        <button class="edit-btn">تعديل</button>
     </ul>
 
-    <button class="btn">طلب هذا الدواء</button>
+    <div class="card-actions">
+        <button class="btn order-btn">طلب</button>
+        <button class="btn details-btn">التفاصيل</button>
+        <button class="btn delete-btn">حذف</button>
+    </div>
+
 </div>
 
 <!-- CARD 8 -->
@@ -484,11 +526,16 @@
     <span class="tag">فيتامينات</span>
 
     <ul>
-        <li><i class="fa-solid fa-box"></i> الكمية: 200 عبوة</li>
-        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2026-01-15</li>
+        <li><i class="fa-solid fa-calendar"></i> الانتهاء: 2027-01-15</li>
+        <button class="edit-btn">تعديل</button>
     </ul>
 
-    <button class="btn">طلب هذا الدواء</button>
+    <div class="card-actions">
+        <button class="btn order-btn">طلب</button>
+        <button class="btn details-btn">التفاصيل</button>
+        <button class="btn delete-btn">حذف</button>
+    </div>
+    
 </div>
 
 </div>
@@ -499,7 +546,7 @@
 
 <!-- main six -->
 <!-- contact start -->
-<section data-section="تواصل معنا" class="contact-area" id="contact-section">
+<!-- <section data-section="تواصل معنا" class="contact-area" id="contact-section">
     <div class="contact-head">
         <span class="contact-badge">
         <i class="fa-regular fa-envelope"></i> تواصل معنا
@@ -513,7 +560,7 @@
     <div class="contact-wrapper">
 
     <!-- FORM -->
-<form asp-action="Index" method="post" class="contact-form">
+<!-- <form asp-action="Index" method="post" class="contact-form">
 
     <div class="form-row">
         <div class="form-group">
@@ -550,10 +597,10 @@
     <partial name="_ValidationScriptsPartial" />
 
 
-    
+    -->
 
     <!-- INFO -->
-    <div class="contact-info">
+    <!-- <div class="contact-info">
     <div class="info-card">
         <span class="info-icon"><i class="fa-solid fa-phone"></i></span>
         <div>
@@ -588,7 +635,7 @@
     </div>
 
     </div>
-</section>
+</section> --> 
 <!-- contact end -->
 <!-- main six -->
 
@@ -663,8 +710,94 @@
 <!-- footer end -->
 <!-- main seven -->
 
+<!-- login and register -->
+<<div class="auth-modal" id="authModal">
+    <div class="auth-box">
+
+        <span class="close-auth" id="closeAuth">✖</span>
+
+        <!-- Login -->
+        <form class="auth-form" id="loginForm">
+            <h2>تسجيل الدخول</h2>
+
+            <input type="email" placeholder="البريد الإلكتروني">
+            <input type="password" placeholder="كلمة المرور">
+
+            <button type="submit">دخول</button>
+
+            <p class="switch">
+                ليس لديك حساب؟
+                <span id="goRegister">إنشاء حساب</span>
+            </p>
+        </form>
+
+        <!-- Register -->
+        <form class="auth-form hidden" id="registerForm">
+            <h2>إنشاء حساب</h2>
+
+            <input type="text" placeholder="الاسم الكامل">
+            <input type="email" placeholder="البريد الإلكتروني">
+            <input type="password" placeholder="كلمة المرور">
+            <input type="password" placeholder="تأكيد كلمة المرور">
+
+            <button type="submit">إنشاء حساب</button>
+
+            <p class="switch">
+                لديك حساب بالفعل؟
+                <span id="goLogin">تسجيل الدخول</span>
+            </p>
+        </form>
+
+    </div>
+</div>
+
+
+
+<!-- donate and request modals -->
+<div id="donateModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('donateModal')">&times;</span>
+        <h2>نموذج تبرع بدواء</h2>
+        <form>
+            <input type="text" placeholder="اسم الدواء" required>
+
+            <select asp-for="Category">
+                    <option value="">اختر التصنيف</option>
+                    <option>مسكنات</option>
+                    <option>ادوية قلب</option>
+                    <option>مضادات حيوية</option>
+                    <option>ادوية ضغط</option>
+                    <option>ادوية سكر</option>
+                    <option>ادوية اطفال</option>
+                    <option>فيتامينات</option>
+                    <option>ادوية اخرى</option>
+                </select>
+
+            <input type="number" placeholder="الكمية" required>
+            <input type="date" placeholder="تاريخ الصلاحية">
+            <button type="submit" class="donate-btn-one">إرسال التبرع</button>
+        </form>
+    </div>
+</div>
+
+
+<div id="requestModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('requestModal')">&times;</span>
+        <h2>نموذج طلب دواء</h2>
+        <form>
+            <input type="text" placeholder="اسم الدواء المطلوب" required>
+            <input type="text" placeholder="رقم التواصل" required>
+            <textarea placeholder="تفاصيل إضافية"></textarea>
+            <button type="submit" class="donate-btn-one">إرسال الطلب</button>
+        </form>
+    </div>
+</div>
+
 
 <script src="js/script.js"></script>
 </body>
 </html>
+
+
 
