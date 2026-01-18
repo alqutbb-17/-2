@@ -56,6 +56,7 @@ body {
     border-radius: 12px;
 }
 
+
 .nav-links {
     list-style: none;
     display: flex;
@@ -86,15 +87,142 @@ body {
     color: #0d9f8c;
 }
 
-.donate-btn {
-    background: #0d9f8c;
-    border: none;
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform .35s ease, box-shadow .35s ease;
+.nav-links a {
+    color: #1f2937;
+    position: relative;
+    text-decoration: none;
+    transition: 0.3s;
 }
+
+.nav-links a.active {
+    color: #10b981; 
+    font-weight: 600;
+}
+
+.nav-links a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: #10b981;
+    border-radius: 2px;
+}
+
+
+/* login and register */
+
+auth-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.auth-link {
+    cursor: pointer;
+    color: #0d3b45;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+.auth-link:hover {
+    color: #14b8a6;
+}
+
+.auth-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #14b8a6;
+    transition: 0.3s;
+}
+
+.auth-link:hover::after {
+    width: 100%;
+}
+
+.divider {
+    color: #ccc;
+}
+
+/*  ----------------------*/
+
+
+
+/* Modal */
+.auth-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.auth-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    width: 360px;
+    position: relative;
+}
+
+.auth-box h3 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.auth-box button {
+    width: 100%;
+    padding: 12px;
+    background: #14b8a6;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.auth-box button:hover {
+    background: #0f766e;
+}
+
+.auth-box p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.auth-box p span {
+    color: #14b8a6;
+    cursor: pointer;
+}
+
+.close-auth {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+
 /* ===== NAVBAR end ===== */
 
 /* ===== HERO Start ===== */
@@ -103,9 +231,9 @@ body {
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    padding: 60px;
+    padding: 0 60px;
 }
-/* ===== HERO End ===== */
+
 
 /* ===== RIGHT START ===== */
 .hero-left {
@@ -260,6 +388,120 @@ body {
 .orange {
     color: #f2994a;
 }
+
+
+/* donate and request modals */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); 
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 400px;
+    direction: rtl;
+    text-align: center;
+}
+
+.close {
+    float: left;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+input, select, textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    outline: none;
+    font-size: 14px;
+    transition: .3s ease;
+    background: #fff;
+}
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #1fbfa6;
+    box-shadow: 0 0 0 4px rgba(31, 191, 166, 0.2);
+}
+
+textarea {
+    margin-top: 10px;
+    resize: none;
+    height: 90px;
+}
+
+/* button */
+.donate-btn-one {
+    position: relative;
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #1fbfa6, #0f7f70);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: visible;
+    transition: .4s ease;
+    box-shadow: 0 12px 30px rgba(31,191,166,.35);
+    position: relative;
+} 
+
+.donate-btn-one:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(31,191,166,.45);
+}
+
+.donate-btn-one:active {
+    transform: scale(.97);
+}
+
+.donate-btn-one .text {
+    transition: .3s;
+}
+
+.donate-btn-one .loader {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    opacity: 0;
+}
+
+.donate-btn-one.loading .text {
+    opacity: 0;
+}
+
+.donate-btn-one.loading .loader {
+    opacity: 1;
+}
+
+.donate-btn-one.success {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    box-shadow: 0 12px 30px rgba(34,197,94,.4);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
 /* ===== LIFT END ===== */
 
 /* ===== Animations Start ===== */
@@ -293,6 +535,7 @@ body {
     animation-delay: .4s;
 }
 /* ===== Animations End ===== */
+/* ===== HERO End ===== */
 
 /* stats start */
 
@@ -574,9 +817,11 @@ body {
 
 /* main three */
 /* donate start */
-.donate {
+/* .donate {
     text-align: center;
     padding: 0 15px;
+    margin-bottom: -15px;
+
 }
 
 .badge-one {
@@ -597,9 +842,9 @@ h1 {
     color: #6b8f88;
     max-width: 500px;
     margin: auto;
-}
+}*/
 
-.form-card {
+/* .form-card {
     background: #fff;
     max-width: 770px;
     margin: 40px auto 0;
@@ -621,13 +866,13 @@ h1 {
 
 .form-card h2 {
     margin-bottom: 5px;
-}
+} */
 
-.sub {
+/* .sub {
     font-size: 14px;
     color: #7aa5a0;
     margin-bottom: 25px;
-}
+} 
 
 .box {
     background: #f6fbfa;
@@ -640,9 +885,9 @@ h1 {
     font-size: 15px;
     margin-bottom: 12px;
     color: #0f7f70;
-}
+} */
 
-.grid {
+/* .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
@@ -669,10 +914,10 @@ textarea {
     margin-top: 10px;
     resize: none;
     height: 90px;
-}
+} */
 
 /* button */
-.donate-btn-one {
+/* .donate-btn-one {
     position: relative;
     width: 100%;
     height: 52px;
@@ -728,7 +973,7 @@ textarea {
 
 @keyframes spin {
     to { transform: rotate(360deg); }
-}
+} */
 
 /* donate end */
 /* main three */
@@ -738,7 +983,8 @@ textarea {
 /* stats start */
 .stats-section {
     text-align: center;
-    padding: 80px 20px;
+    margin-top: -100px;
+
 }
 
 .badge {
@@ -821,6 +1067,7 @@ textarea {
     border: 1px solid #dbeafe;
     outline: none;
     font-size: 15px;
+    margin-bottom: 30px;
     transition: .3s;
 }
 
@@ -837,6 +1084,11 @@ textarea {
     font-size: 20px;
     color: #64748b;
 }
+
+.search-icon {
+    padding-bottom: 25px;
+    cursor: pointer;
+}
 /* stats end */
 /* main four */
 
@@ -848,6 +1100,7 @@ textarea {
     grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
     gap:13px;
     margin: auto;
+    margin-bottom: 30px;
 }
 
 .card-three{
@@ -860,7 +1113,6 @@ textarea {
     transition:.4s ease;
 }
 
-/* الخط العلوي */
 .card-three::before{
     content:"";
     position:absolute;
@@ -945,7 +1197,21 @@ ul li{
     margin-bottom:8px;
 }
 
+
 /* btn */
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
 .btn{
     width:100%;
     border:none;
@@ -977,13 +1243,63 @@ ul li{
 .btn:hover{
     background:#0f766e;
 }
+
+
+/* edit-btn */
+.edit-btn {
+    background: #e0f4ef;
+    color: #0f766e;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    width: fit-content;      
+    align-self: flex-start;
+    transition: .3s;
+}
+
+.edit-btn:hover {
+    background: #c7eee6;
+}
+
+
+/* order-btn */
+.order-btn {
+    background: #14b8a6;
+    color: #fff;
+}
+
+.order-btn:hover {
+    background: #0f766e;
+}
+
+/* details-btn */
+.details-btn {
+    background: #e0f4ef;
+    color: #0f766e;
+}
+
+.details-btn:hover {
+    background: #c7eee6;
+}
+
+/* delete-btn */
+.delete-btn {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background: #fecaca;
+}
 /* cardes end */
 /* main five */
 
 
 /* main six */
 /* contact start */
-.contact-area {
+/* .contact-area {
     padding: 80px 20px;
     background: #f6fbf9;
     direction: rtl;
@@ -1140,7 +1456,7 @@ textarea {
 @keyframes fadeUp {
     from {opacity: 0; transform: translateY(30px);}
     to {opacity: 1; transform: translateY(0);}
-}
+} */
 /* contact end */
 /* main six */
 
@@ -1471,6 +1787,4 @@ img {
     height: auto;
     min-height: 300px;
 }
-
-
 
