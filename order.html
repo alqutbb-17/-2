@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>طلب الدواء</title>
+</head>
+<body>
+
+<div class="card">
+    <h2 id="drugName"></h2>
+    <p id="drugCategory"></p>
+    <p id="drugQuantity"></p>
+    <p id="drugExpiry"></p>
+
+    <button id="deleteBtn">حذف</button>
+</div>
+
+
+
+
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+const name = params.get("name");
+const category = params.get("category");
+const quantity = params.get("quantity");
+const expiry = params.get("expiry");
+// const image = params.get("image");
+
+document.getElementById("drugName").innerText = name;
+document.getElementById("drugCategory").innerText = "التصنيف: " + category;
+document.getElementById("drugQuantity").innerText = "الكمية: " + quantity;
+document.getElementById("drugExpiry").innerText = "تاريخ الانتهاء: " + expiry;
+// document.getElementById("deleteBtn").src = image;
+
+// زر الحذف
+document.getElementById("deleteBtn").onclick = () => {
+    alert("تم حذف الدواء");
+    window.location.href = "index.html";
+};
+</script>
+
+</body>
+</html>
