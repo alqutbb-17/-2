@@ -1,3 +1,5 @@
+
+
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll(".nav-links a");
 
@@ -36,6 +38,9 @@ window.onclick = function(event) {
         event.target.style.display = "none";
     }
 }
+
+
+
 
 
 
@@ -159,7 +164,45 @@ goLogin.onclick = function () {
 
 
 
-// cards zzzzzzzzzzzzooooo
+// cards 1 2 3 4 5 6 7 8  zzzzzzzzzzzzooooo
+
+const buttons = document.querySelectorAll(".filter-btn");
+
+buttons.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        buttons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+
+        // هنا تقدر تربط الفلترة الحقيقية لاحقاً
+        console.log("Filter:", btn.dataset.filter);
+    });
+});
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".card-three");
+
+filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+
+        // active class
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filter = btn.dataset.filter;
+
+        cards.forEach(card => {
+            if (filter === "all") {
+                card.style.display = "block";
+            } else {
+                card.style.display =
+                    card.dataset.status === filter ? "block" : "none";
+            }
+        });
+
+    });
+});
+
+
 
 document.addEventListener("click", function (e) {
 
@@ -192,7 +235,69 @@ document.addEventListener("click", function (e) {
 
 
 
+//  order btn
 
+
+
+
+
+// details btn
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const deleteButtons = document.querySelectorAll(".delete-btn");
+
+    deleteButtons.forEach(function (btn) {
+
+        btn.addEventListener("click", function () {
+
+            // نطلع على الكارد الأب
+            const card = btn.closest(".card-three");
+
+            if (card) {
+                card.remove(); // حذف الكارد
+            }
+
+        });
+
+    });
+
+});
+
+
+
+// Responsive mobile
+
+// وظيفة فتح/إغلاق القائمة في الموبايل
+function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('active');
+}
+
+// تحسين وظيفة التبديل بين النماذج بـ Animation بسيط
+function toggleAuth(mode) {
+    const login = document.getElementById('loginForm');
+    const signup = document.getElementById('signupForm');
+    
+    [login, signup].forEach(el => el.style.opacity = '0'); // تأثير اختفاء
+    
+    setTimeout(() => {
+        if (mode === 'signup') {
+            login.style.display = 'none';
+            signup.style.display = 'block';
+        } else {
+            signup.style.display = 'none';
+            login.style.display = 'block';
+        }
+        document.querySelector(mode === 'signup' ? '#signupForm' : '#loginForm').style.opacity = '1';
+    }, 200);
+}
+
+// إغلاق أي نافذة مفتوحة بالضغط على مفتاح Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+        document.querySelectorAll('.modal, .auth-modal').forEach(m => m.style.display = 'none');
+    }
+});
 
 
 
