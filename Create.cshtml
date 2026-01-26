@@ -1,57 +1,75 @@
-@model MedicineDonation
+@model Donation
 
-<section class="donate">
-    <span class="badge-one">تبرع بدواء 💚</span>
-    <h1>ساهم فى <span>انقاذ حياه</span></h1>
+@{
+    ViewData["Title"] = "التبرع بالدواء";
+}
 
-    @if (TempData["Success"] != null)
-    {
-        <div style="color:green; margin-bottom:15px">
-            @TempData["Success"]
-        </div>
-    }
+<section class="main-wrapper">
 
-    <form asp-action="Create" method="post" class="form-card">
-        <h2>نموذج التبرع بالدواء</h2>
+    <section id="donate-section" class="donate">
 
-        <!-- معلومات الدواء -->
-        <div class="box">
-            <h3>معلومات الدواء ✏️</h3>
-            <div class="grid">
-                <input asp-for="MedicineName" placeholder="اسم الدواء" />
-                <input asp-for="Quantity" type="number" placeholder="عدد العبوات" />
+        <span class="badge-one">تبرع بدواء 💚</span>
+        <h1>ساهم فى <span>انقاذ حياه</span></h1>
+        <p class="desc">
+            نقدر مساهمتك في نشر الصحة وإنقاذ حياة من يحتاجها
+        </p>
 
-                <select asp-for="Category">
-                    <option value="">اختر التصنيف</option>
-                    <option>مسكنات</option>
-                    <option>ادوية قلب</option>
-                    <option>مضادات حيوية</option>
-                    <option>ادوية ضغط</option>
-                    <option>ادوية سكر</option>
-                    <option>ادوية اطفال</option>
-                    <option>فيتامينات</option>
-                    <option>ادوية اخرى</option>
-                </select>
+        <form asp-action="Create" asp-controller="Donations" method="post" class="form-card">
+            @Html.AntiForgeryToken()
 
-                <input asp-for="ExpiryDate" type="date" />
+            <h2>نموذج التبرع بالدواء</h2>
+
+            <div class="box">
+                <h3>معلومات الدواء ✏️</h3>
+
+                <div class="grid">
+                    <input asp-for="MedicineName" placeholder="اسم الدواء" />
+                    <span asp-validation-for="MedicineName"></span>
+
+                    <input asp-for="Quantity" type="number" placeholder="عدد العبوات" />
+                    <span asp-validation-for="Quantity"></span>
+
+                    <select asp-for="Category">
+                        <option value="">اختر التصنيف</option>
+                        <option>مسكنات</option>
+                        <option>ادوية قلب</option>
+                        <option>مضادات حيوية</option>
+                        <option>ادوية ضغط</option>
+                        <option>ادوية سكر</option>
+                        <option>ادوية اطفال</option>
+                        <option>فيتامينات</option>
+                        <option>ادوية اخرى</option>
+                    </select>
+
+                    <input asp-for="ExpiryDate" type="date" />
+                </div>
             </div>
-        </div>
 
-        <!-- معلومات المتبرع -->
-        <div class="box">
-            <h3>معلومات المتبرع 👤</h3>
-            <div class="grid">
-                <input asp-for="DonorName" placeholder="الاسم الكامل" />
-                <input asp-for="Phone" placeholder="رقم الهاتف" />
-                <input asp-for="Address" placeholder="العنوان" />
-                <input asp-for="AreaCode" placeholder="كود المنطقة" />
+            <div class="box">
+                <h3>معلومات المتبرع 👤</h3>
+
+                <div class="grid">
+                    <input asp-for="DonorName" placeholder="الاسم الكامل" />
+                    <input asp-for="Phone" placeholder="رقم الهاتف" />
+                    <input asp-for="Address" placeholder="العنوان" />
+                    <input asp-for="AreaCode" placeholder="كود المنطقة" />
+                </div>
             </div>
-        </div>
 
-        <textarea asp-for="Notes" placeholder="أي ملاحظات إضافية..."></textarea>
+            <textarea asp-for="Notes" placeholder="أي ملاحظات إضافية..."></textarea>
 
-        <button type="submit" class="donate-btn-one">
-            إرسال التبرع
-        </button>
-    </form>
+            <button type="submit" class="donate-btn-one">
+                إرسال التبرع
+            </button>
+
+        </form>
+
+    </section>
+
 </section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
